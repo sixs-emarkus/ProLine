@@ -1,0 +1,1021 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="dsChkPrint">
+      <DataSourceReference>/reports/SharedReportDataSource</DataSourceReference>
+      <rd:SecurityType>None</rd:SecurityType>
+      <rd:DataSourceID>e53c1736-fb9e-4ce2-bae0-59a7cf1a2ba6</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="CheckHedApTran">
+      <Query>
+        <DataSourceName>dsChkPrint</DataSourceName>
+        <CommandText>="SELECT T1.DocCheckAmt,T1.Calc_CurncyModule,T1.Calc_DspAccountRef,T1.Calc_DspCheckAmt,T1.Calc_DspCheckDate,T1.Calc_DspCheckNum,T1.Calc_DspName,T1.Calc_DspVendorAddr,T1.Calc_DspWordAmt,T1.CurrencyCode_CurrSymbol, T2.[Description], T2.DocDiscAmt,T2.DocTranAmt,T2.InvoiceNum,T2.Calc_DspCheckAmt as ApTran_Calc_DspCheckAmt,CAST( T2.Calc_DspCheckNum as nvarchar ) as ApTran_Calc_DspCheckNum,T2.Calc_DspLineCounter,T2.Calc_DspNetAmt,T2.Calc_DspWordAmt as ApTran_Calc_DspWordAmt
+, T2.InvoiceDate, T2.TranType ,T3.Description AS RptLiteralsDescription
+ ,T3.DiscAmt AS RptLiteralsDiscAmt
+ ,T3.DocTranAmt AS RptLiteralsDocTranAmt
+ ,T3.InvoiceNum AS RptLiteralsInvoiceNum
+ ,T3.RptLiteralsLDate
+ ,T3.RptLiteralsLNetAmount
+ ,T3.RptLiteralsLNo
+ ,T3.RptLiteralsLOrderOf
+ ,T3.RptLiteralsLPayTo
+ FROM CheckHed_" + Parameters!TableGuid.Value + " T1 
+ LEFT OUTER JOIN ApTran_" + Parameters!TableGuid.Value + " T2 
+	ON T1.Company = T2.Company AND T1.HeadNum = T2.HeadNum 
+ LEFT OUTER JOIN RptLabels_" + Parameters!TableGuid.Value + " T3 
+	ON T1.RptLanguageID = T3.RptLanguageID"</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Calc_DspCheckNum">
+          <DataField>Calc_DspCheckNum</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="InvoiceNum">
+          <DataField>InvoiceNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DocTranAmt">
+          <DataField>DocTranAmt</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DocDiscAmt">
+          <DataField>DocDiscAmt</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspNetAmt">
+          <DataField>Calc_DspNetAmt</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspCheckDate">
+          <DataField>Calc_DspCheckDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspName">
+          <DataField>Calc_DspName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DocCheckAmt">
+          <DataField>DocCheckAmt</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspCheckAmt">
+          <DataField>Calc_DspCheckAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspWordAmt">
+          <DataField>Calc_DspWordAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspLineCounter">
+          <DataField>Calc_DspLineCounter</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspVendorAddr">
+          <DataField>Calc_DspVendorAddr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CurrencyCode_CurrSymbol">
+          <DataField>CurrencyCode_CurrSymbol</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Calc_CurncyModule">
+          <DataField>Calc_CurncyModule</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Calc_DspAccountRef">
+          <DataField>Calc_DspAccountRef</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ApTran_Calc_DspCheckNum">
+          <DataField>ApTran_Calc_DspCheckNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ApTran_Calc_DspCheckAmt">
+          <DataField>ApTran_Calc_DspCheckAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline1">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(0).ToString</Value>
+        </Field>
+        <Field Name="ApTran_Calc_DspWordAmt">
+          <DataField>ApTran_Calc_DspWordAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RptLiteralsDescription">
+          <DataField>RptLiteralsDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline2">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(1).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsDiscAmt">
+          <DataField>RptLiteralsDiscAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RptLiteralsDocTranAmt">
+          <DataField>RptLiteralsDocTranAmt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline3">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(2).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsInvoiceNum">
+          <DataField>RptLiteralsInvoiceNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline4">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(3).ToString</Value>
+        </Field>
+        <Field Name="addline5">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(4).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsLDate">
+          <DataField>RptLiteralsLDate</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RptLiteralsLNetAmount">
+          <DataField>RptLiteralsLNetAmount</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline6">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(5).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsLNo">
+          <DataField>RptLiteralsLNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline7">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(6).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsLOrderOf">
+          <DataField>RptLiteralsLOrderOf</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="addline8">
+          <Value>=Split(Fields!Calc_DspVendorAddr.Value,"~")(7).ToString</Value>
+        </Field>
+        <Field Name="RptLiteralsLPayTo">
+          <DataField>RptLiteralsLPayTo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RptLanguageID">
+          <DataField>RptLanguageID</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="InvoiceDate">
+          <DataField>InvoiceDate</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="TranType">
+          <DataField>TranType</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+      </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!Calc_DspCheckNum.Value</FilterExpression>
+          <Operator>Equal</Operator>
+          <FilterValues>
+            <FilterValue>=Parameters!P_CheckNum.Value</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Table1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>7.98958in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.17in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle9">
+                          <ReportItems>
+                            <Textbox Name="lblInvoice">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!RptLiteralsInvoiceNum.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>1.02013in</Left>
+                              <Height>0.17in</Height>
+                              <Width>0.81487in</Width>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblDescription">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!RptLiteralsDescription.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>2.42917in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.44583in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblAmount">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!RptLiteralsDocTranAmt.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>4.115in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.16in</Width>
+                              <ZIndex>2</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblDiscount">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!RptLiteralsDiscAmt.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>5.285in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblNetAmount">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!RptLiteralsLNetAmount.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>6.3875in</Left>
+                              <Height>0.17in</Height>
+                              <Width>1.5in</Width>
+                              <ZIndex>4</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblInvoiceDate">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Constant">Invoice Date</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>0.015in</Left>
+                              <Height>0.17in</Height>
+                              <Width>0.84265in</Width>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="lblInvoiceDate2">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value EvaluationMode="Constant">Type</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Left>1.96404in</Left>
+                              <Height>0.17in</Height>
+                              <Width>0.38328in</Width>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>Silver</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>Silver</BackgroundColor>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.21875in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle3">
+                          <ReportItems>
+                            <Textbox Name="InvoiceDate">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=FORMAT(Fields!InvoiceDate.Value, "dd-MMM-yy")</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>InvoiceDate</rd:DefaultName>
+                              <Left>0.035in</Left>
+                              <Height>0.1459in</Height>
+                              <Width>0.81945in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="txtInvoiceNum">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!InvoiceNum.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.02445in</Top>
+                              <Left>1.02013in</Left>
+                              <Height>0.14in</Height>
+                              <Width>0.75418in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Visibility>
+                                <Hidden>=Microsoft.VisualBasic.Interaction.iif(Fields!InvoiceNum.Value = "_Blank_", True, False)</Hidden>
+                              </Visibility>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="txtDescription">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!Description.Value</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Left</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.02445in</Top>
+                              <Left>2.44167in</Left>
+                              <Height>0.14in</Height>
+                              <Width>1.61639in</Width>
+                              <ZIndex>2</ZIndex>
+                              <Style>
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="txtDocTranAmt">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Microsoft.VisualBasic.Strings.format(Fields!DocTranAmt.Value, "#,##0.#0")</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.02445in</Top>
+                              <Left>4.1275in</Left>
+                              <Height>0.14in</Height>
+                              <Width>1.16in</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="txtCalc_DspNetAmt">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Microsoft.VisualBasic.Strings.format(Fields!Calc_DspNetAmt.Value, "#,##0.#0")</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.02445in</Top>
+                              <Left>6.3875in</Left>
+                              <Height>0.14in</Height>
+                              <Width>1.5in</Width>
+                              <ZIndex>4</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="TranType">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Fields!TranType.Value</Value>
+                                      <Style />
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>TranType</rd:DefaultName>
+                              <Top>0.02445in</Top>
+                              <Left>1.96404in</Left>
+                              <Height>0.12979in</Height>
+                              <Width>0.33333in</Width>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Textbox>
+                            <Textbox Name="txtDocDiscAmt">
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>=Microsoft.VisualBasic.Strings.format(Fields!DocDiscAmt.Value, "#,##0.#0")</Value>
+                                      <Style>
+                                        <FontFamily>Arial Unicode MS</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Right</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <Top>0.01112in</Top>
+                              <Left>5.30139in</Left>
+                              <Height>0.14in</Height>
+                              <Width>1in</Width>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <Border />
+                                <BackgroundColor>White</BackgroundColor>
+                              </Style>
+                            </Textbox>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                        <rd:Selected>true</rd:Selected>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.30187in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle1">
+                          <ReportItems>
+                            <Rectangle Name="Rectangle4">
+                              <ReportItems>
+                                <Textbox Name="StubTotDocTransAmt">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Microsoft.VisualBasic.Strings.FORMAT(Sum(Fields!DocTranAmt.Value, "CheckHedApTran"), "#,##0.#0")</Value>
+                                          <Style>
+                                            <FontSize>9pt</FontSize>
+                                            <FontWeight>Bold</FontWeight>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <Top>0.02326in</Top>
+                                  <Left>4.13431in</Left>
+                                  <Height>0.15625in</Height>
+                                  <Width>1.17569in</Width>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                  </Style>
+                                </Textbox>
+                                <Textbox Name="Textbox7">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>Stub Total:</Value>
+                                          <Style>
+                                            <FontSize>9pt</FontSize>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox7</rd:DefaultName>
+                                  <Top>0.02326in</Top>
+                                  <Left>2.78208in</Left>
+                                  <Height>0.18056in</Height>
+                                  <Width>1.28278in</Width>
+                                  <ZIndex>1</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>Double</Style>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                                <Textbox Name="StubTotDocDiscAmt">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Microsoft.VisualBasic.Strings.FORMAT(Sum(Fields!DocDiscAmt.Value, "CheckHedApTran"), "#,##0.#0")</Value>
+                                          <Style>
+                                            <FontSize>9pt</FontSize>
+                                            <FontWeight>Bold</FontWeight>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <Top>0.02326in</Top>
+                                  <Left>5.32in</Left>
+                                  <Height>0.15625in</Height>
+                                  <Width>1in</Width>
+                                  <ZIndex>2</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                  </Style>
+                                </Textbox>
+                                <Textbox Name="StubTotDocDiscAmt2">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Microsoft.VisualBasic.Strings.FORMAT(Sum(Fields!Calc_DspNetAmt.Value, "CheckHedApTran"), "#,##0.#0")</Value>
+                                          <Style>
+                                            <FontSize>9pt</FontSize>
+                                            <FontWeight>Bold</FontWeight>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <Top>0.02326in</Top>
+                                  <Left>6.41in</Left>
+                                  <Height>0.15625in</Height>
+                                  <Width>1.5in</Width>
+                                  <ZIndex>3</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                  </Style>
+                                </Textbox>
+                              </ReportItems>
+                              <KeepTogether>true</KeepTogether>
+                              <Top>0.04902in</Top>
+                              <Height>0.20382in</Height>
+                              <Width>7.98958in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Rectangle>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="ApTran_Calc_DspCheckNum">
+                    <DocumentMapLabel>=format(Fields!Calc_DspCheckNum.Value,"#,##0")</DocumentMapLabel>
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!ApTran_Calc_DspCheckNum.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Calc_DspCheckNum.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Table1_Details_Group">
+                        <DataElementName>Detail</DataElementName>
+                      </Group>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                      <DataElementName>Detail_Collection</DataElementName>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
+                  </TablixMembers>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>CheckHedApTran</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!InvoiceNum.Value</Value>
+              </SortExpression>
+            </SortExpressions>
+            <Left>0.00493in</Left>
+            <Height>0.69062in</Height>
+            <Width>7.98958in</Width>
+            <Style>
+              <FontFamily>Arial Unicode MS</FontFamily>
+              <FontSize>9pt</FontSize>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>0.69062in</Height>
+        <Style />
+      </Body>
+      <Width>7.99451in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.01042in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <InteractiveHeight>10.5in</InteractiveHeight>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+        <TopMargin>0.16in</TopMargin>
+        <BottomMargin>0.16in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="TableGuid">
+      <DataType>String</DataType>
+      <Prompt>TableGuid</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="P_CheckNum">
+      <DataType>Integer</DataType>
+      <Prompt>P_CheckNum</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>2</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>TableGuid</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>P_CheckNum</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Public Shared RptLiteralsDescription as String
+Public Shared RptLiteralsDiscAmt as String
+Public Shared RptLiteralsDocTranAmt as String
+Public Shared RptLiteralsInvoiceNum as String
+Public Shared RptLiteralsLDate as String
+Public Shared RptLiteralsLNetAmount as String
+Public Shared RptLiteralsLNo as String
+Public Shared RptLiteralsLOrderOf as String
+Public Shared RptLiteralsLPayTo as String
+
+Public Function SetLabels(p_RptLiteralsDescription as String ,p_RptLiteralsDiscAmt as String ,p_RptLiteralsDocTranAmt as String ,p_RptLiteralsInvoiceNum as String ,p_RptLiteralsLDate as String ,p_RptLiteralsLNetAmount as String ,p_RptLiteralsLNo as String ,p_RptLiteralsLOrderOf as String ,p_RptLiteralsLPayTo as String) as String
+   RptLiteralsDescription = p_RptLiteralsDescription
+   RptLiteralsDiscAmt = p_RptLiteralsDiscAmt
+   RptLiteralsDocTranAmt = p_RptLiteralsDocTranAmt
+   RptLiteralsInvoiceNum = p_RptLiteralsInvoiceNum
+   RptLiteralsLDate = p_RptLiteralsLDate
+   RptLiteralsLNetAmount = p_RptLiteralsLNetAmount
+   RptLiteralsLNo = p_RptLiteralsLNo
+   RptLiteralsLOrderOf = p_RptLiteralsLOrderOf
+   RptLiteralsLPayTo= p_RptLiteralsLPayTo    
+   Return ""
+End Function
+
+
+
+SHARED suffixes AS String() = _ 
+{"Thousand ", "Million ", "Billion ", "Trillion ", _ 
+"Quadrillion ", "Quintillion ", "Sextillion "} 
+SHARED units AS String() = _ 
+{"","One ", "Two ", "Three ", "Four ", "Five ", _ 
+"Six ", "Seven ", "Eight ", "Nine "} 
+SHARED tens AS String() = _ 
+{"Twenty ", "Thirty ", "Forty ", "Fifty ", "Sixty ", _ 
+"Seventy ", "Eighty ", "Ninety "} 
+SHARED digits AS String() = _ 
+{"Ten ","Eleven ", "Twelve ", "Thirteen ", "Fourteen ", _ 
+"Fifteen ", "Sixteen ", "Seventeen ", "Eighteen ", "Nineteen"} 
+SHARED expr AS NEW _ 
+System.Text.RegularExpressions.Regex("^-?\d+(\.\d{2})?$", _ 
+System.Text.RegularExpressions.RegexOptions.None) 
+Public Function ExpandPrice(Price AS Double, Optional pSeparator AS String = ".") AS String 
+Dim pPrice As String 
+pPrice = FORMAT(Price,"##############.00") 
+Dim temp AS New System.Text.StringBuilder() 
+If Not expr.IsMatch(pPrice) Then 
+' temp.Append(pPrice) or whatever you want to do here 
+Else 
+Dim parts AS String() = pPrice.Split(pSeparator) 
+Dim dollars AS String = parts(0) 
+Dim cents AS String = parts(1) 
+If CDbl(dollars) &gt; 1 Then 
+temp.Append(ExpandIntegerNumber(dollars) &amp; "Dollars ") 
+If CInt(cents) &gt; 0 Then 
+temp.Append("And ") 
+End If 
+ElseIf CDbl(dollars) = 0 Then 
+temp.Append(ExpandIntegerNumber(dollars) &amp; "Zero Dollars ") 
+If CInt(cents) &gt;= 0 Then 
+temp.Append("And ") 
+End If 
+ElseIf CDbl(dollars) = 1 Then 
+temp.Append(ExpandIntegerNumber(dollars) &amp; "Dollar " ) 
+End If 
+If CDbl(cents) &gt; 1 Then 
+temp.Append(ExpandIntegerNumber(cents) &amp; "Cents") 
+ElseIf CDbl(cents) = 0 Then 
+temp.Append(ExpandIntegerNumber(cents) &amp; "Zero Cents ") 
+ElseIf CDbl(cents) = 1 Then 
+temp.Append(ExpandIntegerNumber(cents) &amp; "Cent " ) 
+End If 
+End If 
+RETURN temp.ToString() 
+End Function 
+Function ExpandIntegerNumber(pNumberStr AS String) AS String 
+Dim temp2 AS New System.Text.StringBuilder() 
+Dim number AS String = _ 
+StrDup(3 - Len(pNumberStr) Mod 3, "0") &amp; pNumberStr 
+Dim i AS Integer, j AS Integer = -1 
+Dim numPart AS String 
+For i = Len(number) - 2 To 1 Step -3 
+numPart = Mid(number, i, 3) 
+If Clng(numPart &gt; 0) Then 
+If j &gt; -1 Then 
+temp2.Insert(0,suffixes(j),1) 
+End If 
+End If 
+temp2.Insert(0,GetNumberUnder1000Str(numPart),1) 
+j += 1 
+Next 
+RETURN temp2.ToString() 
+End Function 
+Function GetNumberUnder1000Str(pNumber AS String) AS String 
+Dim temp1 AS New System.Text.StringBuilder() 
+If Len(pNumber) = 3 Then 
+If CLng(Left(pNumber, 1)) &gt; 0 Then 
+temp1.Append(GetNumberUnder100Str(Left(pNumber, 1)) &amp; "Hundred ") 
+End If 
+End If 
+temp1.Append(GetNumberUnder100Str(Right("0" &amp; pNumber, 2))) 
+RETURN temp1.ToString() 
+End Function 
+Function GetNumberUnder100Str(pNumber AS String) AS String 
+If pNumber &gt; 19 Then 
+RETURN tens(Left(pNumber, 1) - 2) &amp; units(Right(pNumber, 1)) 
+ElseIF pNumber &gt;= 10 and pNumber &lt;= 19 Then 
+RETURN digits(Right(pNumber, 1)) 
+Else 
+RETURN units(Right(pNumber, 1)) 
+End If 
+End Function 
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>810efe59-bfa4-4d56-80c4-468e90bf9027</rd:ReportID>
+</Report>
